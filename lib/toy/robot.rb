@@ -13,8 +13,8 @@ module Toy
     def place(x, y, facing)
       raise @direction::Error::DirectionError unless @direction::DIRECTION.include?(facing)
 
-      @facing = facing
       @table.hold!(x, y, self)
+      @facing = facing
     end
 
     def placed?
