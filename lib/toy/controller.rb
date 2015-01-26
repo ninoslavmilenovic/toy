@@ -75,26 +75,26 @@ module Toy
       end
 
       def move
-        @robot.move! and return nil
-      rescue Toy::Robot::Error::PlacementError => e
-        e.message
+        action { @robot.move! }
       end
 
       def left
-        @robot.turn_left! and return nil
-      rescue Toy::Robot::Error::PlacementError => e
-        e.message
+        action { @robot.turn_left! }
       end
 
       def right
-        @robot.turn_right! and return nil
-      rescue Toy::Robot::Error::PlacementError => e
-        e.message
+        action { @robot.turn_right! }
       end
 
       def report
-        x, y, facing = @robot.position
-        "#{x},#{y},#{facing.upcase}"
+        action do 
+          x, y, facing = @robot.position
+          return "#{x},#{y},#{facing.upcase}"
+        end
+      end
+
+      def action(&execute)
+        yield execute and return nil
       rescue Toy::Robot::Error::PlacementError => e
         e.message
       end
