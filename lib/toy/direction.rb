@@ -26,12 +26,12 @@ module Toy
           DIRECTION[(DIRECTION.index(direction) + index) % DIRECTION.size]
         end
     end
-  end
-
-  module Error
-    class DirectionError < ArgumentError
-      def message
-        'Invalid direction!'
+    
+    module Error
+      class DirectionError < ArgumentError
+        def message
+          'Invalid direction!'
+        end
       end
     end
   end
