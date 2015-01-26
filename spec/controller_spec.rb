@@ -63,6 +63,14 @@ describe Toy::Controller do
           expect { controller.start }.to output("Already taken!\n").to_stdout
         end
       end
+
+      context 'when arguments are missing' do
+        before { allow(controller).to receive(:gets).and_return('PLACE INVALID', 'STOP') }
+
+        specify do
+          expect { controller.start }.to output("Invalid placement arguments!\n").to_stdout
+        end
+      end
     end
 
     context 'on MOVE' do
