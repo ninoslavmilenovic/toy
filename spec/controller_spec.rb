@@ -6,6 +6,14 @@ describe Toy::Controller do
   let(:controller) { Toy::Controller.new }
 
   describe '#start' do
+    context 'on invalid command' do
+      before { allow(controller).to receive(:gets).and_return('INVALID', 'STOP') }
+
+      specify do
+        expect { controller.start }.to output("Invalid command! Type HELP for list of available commands.\n").to_stdout
+      end
+    end
+
     context 'on HELP' do
       before { allow(controller).to receive(:gets).and_return('HELP', 'STOP') }
 
@@ -24,11 +32,35 @@ describe Toy::Controller do
         end
       end
 
-      context 'when invalid arguments' do
+      context 'when invalid coordinates' do
         before { allow(controller).to receive(:gets).and_return('PLACE 1,INVALID,NORTH', 'STOP') }
 
         specify do
           expect { controller.start }.to output("Coordinates must be of type Fixnum!\n").to_stdout
+        end
+      end
+
+      context 'when invalid direciton' do
+        before { allow(controller).to receive(:gets).and_return('PLACE 1,1,INVALID', 'STOP') }
+
+        specify do
+          expect { controller.start }.to output("Invalid direction!\n").to_stdout
+        end
+      end
+
+      context 'when invalid arguments' do
+        before { allow(controller).to receive(:gets).and_return('PLACE 1,INVALID', 'STOP') }
+
+        specify do
+          expect { controller.start }.to output("Invalid placement arguments!\n").to_stdout
+        end
+      end
+
+      context 'when unit is taken' do
+        before { allow(controller).to receive(:gets).and_return('PLACE 1,1,NORTH','PLACE 1,1,NORTH', 'STOP') }
+
+        specify do
+          expect { controller.start }.to output("Already taken!\n").to_stdout
         end
       end
     end
