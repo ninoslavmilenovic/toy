@@ -13,10 +13,35 @@ Simulation of a toy robot moving on a square tabletop. The robot is free to roam
 $ gem install toy
 ```
 
-## Examples ##
-```ruby
-require 'toy'
+## Usage ##
+```bash
+$ toy
 ```
+
+## Examples ##
+
+Example Input and Output:  
+
+a)  
+`PLACE 0,0,NORTH`  
+`MOVE`  
+`REPORT`  
+Output: `0,1,NORTH`  
+
+b)  
+`PLACE 0,0,NORTH`  
+`LEFT`  
+`REPORT`  
+Output: `0,0,WEST`  
+
+c)  
+`PLACE 1,2,EAST`  
+`MOVE`  
+`MOVE`  
+`LEFT`  
+`MOVE`  
+`REPORT`  
+Output: `3,3,NORTH`
 
 ### Copyright ###
 Copyright (c) 2015 Ninoslav Milenovic
