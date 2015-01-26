@@ -68,7 +68,7 @@ module Toy
         rescue Toy::Unit::Error::CoordinateError => e
           e.message
         rescue Toy::Table::Error::TableError
-          "Already taken!"
+          "Not available!"
         rescue
           general_error_message
         end
