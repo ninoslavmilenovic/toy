@@ -50,7 +50,6 @@ module Toy
       end
 
       def place(command)
-        general_error_message = 'Invalid placement arguments!'
         begin
           x, y, facing = command.split(' ', 2).last.split(',')
 
@@ -58,7 +57,7 @@ module Toy
           y = y.to_i if y.strip.match(/^(\d)+$/)
           facing = facing.strip.downcase.to_sym
         rescue
-          return general_error_message
+          return 'Invalid placement arguments!'
         end
 
         begin
@@ -69,8 +68,6 @@ module Toy
           e.message
         rescue Toy::Table::Error::TableError
           "Not available!"
-        rescue
-          general_error_message
         end
       end
 
