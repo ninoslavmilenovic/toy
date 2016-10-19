@@ -46,7 +46,7 @@ module Toy
       end
 
       def help
-        "Available commands: #{COMMANDS.join(' ')}"
+        "Available commands: #{Toy::Controller::COMMANDS.join(' ')}"
       end
 
       def place(command)
