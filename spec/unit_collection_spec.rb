@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Toy::UnitCollection do
   let(:unit_collection) { Toy::UnitCollection.new }
   let(:table1) { Toy::Table.new }
-  let!(:unit1) { Toy::Unit.new(table=table1, 0, 0) }
-  let!(:unit2) { Toy::Unit.new(table=table1, 0, 1) }
-  let!(:unit3) { Toy::Unit.new(table=table1, 1, 1) }
-  let!(:unit4) { Toy::Unit.new(table=table1, 2, 1) }
+  let!(:unit1) { Toy::Unit.new(0, 0, table=table1) }
+  let!(:unit2) { Toy::Unit.new(0, 1, table=table1) }
+  let!(:unit3) { Toy::Unit.new(1, 1, table=table1) }
+  let!(:unit4) { Toy::Unit.new(2, 1, table=table1) }
 
   context 'when valid arguments' do
     describe '#add' do

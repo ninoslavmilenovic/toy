@@ -21,9 +21,9 @@ module Toy
       private
 
         def element(direction, index)
-          raise Error::DirectionError unless DIRECTION.include?(direction)
+          raise Toy::Direction::Error::DirectionError unless Toy::Direction::DIRECTION.include?(direction)
 
-          DIRECTION[(DIRECTION.index(direction) + index) % DIRECTION.size]
+          Toy::Direction::DIRECTION[(Toy::Direction::DIRECTION.index(direction) + index) % Toy::Direction::DIRECTION.size]
         end
     end
     

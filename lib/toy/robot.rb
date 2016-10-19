@@ -4,14 +4,14 @@ module Toy
   class Robot
     attr_reader :table, :facing
 
-    def initialize(table=Table.new, direction=Direction)
+    def initialize(table=Toy::Table.new, direction=Toy::Direction)
       @table = table
       @direction = direction
       @facing = nil
     end
 
     def place(x, y, facing)
-      raise @direction::Error::DirectionError unless @direction::DIRECTION.include?(facing)
+      raise Toy::Direction::Error::DirectionError unless Toy::Direction::DIRECTION.include?(facing)
 
       @table.hold!(x, y, self)
       @facing = facing
@@ -22,25 +22,25 @@ module Toy
     end
 
     def position
-      raise Error::PlacementError unless placed?
+      raise Toy::Robot::Error::PlacementError unless placed?
 
       [current_unit.x, current_unit.y, @facing]
     end
 
     def move!
-      raise Error::PlacementError unless placed?
+      raise Toy::Robot::Error::PlacementError unless placed?
 
       place(target.x, target.y, @facing) if target && target.available?
     end
 
     def turn_left!
-      raise Error::PlacementError unless placed?
+      raise Toy::Robot::Error::PlacementError unless placed?
 
       @facing = @direction.rotate_left(@facing)
     end
 
     def turn_right!
-      raise Error::PlacementError unless placed?
+      raise Toy::Robot::Error::PlacementError unless placed?
       
       @facing = @direction.rotate_right(@facing)
     end

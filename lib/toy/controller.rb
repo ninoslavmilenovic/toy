@@ -7,12 +7,12 @@ module Toy
     attr_reader :robot
 
     def initialize
-      @robot = Robot.new
+      @robot = Toy::Robot.new
     end
 
     def start
       while command = gets
-        unless COMMANDS.include?(command.gsub(/^[A-Z]+/).first)
+        unless Toy::Controller::COMMANDS.include?(command.gsub(/^[A-Z]+/).first)
           puts 'Invalid command! Type HELP for list of available commands.' and next
         end
 

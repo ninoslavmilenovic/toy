@@ -10,7 +10,7 @@ module Toy
     end
 
     def add(unit)
-      raise Error::UnitError unless unit.is_a?(Unit)
+      raise Toy::UnitCollection::Error::UnitError unless unit.is_a?(Unit)
       
       @all << unit
     end
@@ -40,7 +40,7 @@ module Toy
     end
 
     def find_by_direction_of(x, y, direction)
-      raise Error::DirectionError unless @direction::DIRECTION.include?(direction)
+      raise Toy::UnitCollection::Error::DirectionError unless Toy::Direction::DIRECTION.include?(direction)
 
       send("find_#{direction}_of", x, y)
     end
